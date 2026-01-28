@@ -1,0 +1,32 @@
+# Docker Compose Configuration for PSL Project
+version: '3.8'
+
+services:
+  # Flask API Service
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: psl_flask_app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./models:/app/models
+      - ./logs:/app/logs
+      - ./data:/app/data
+    environment:
+      - FLASK_ENV=production
+      - FLASK_APP=flask_app.py
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# Volumes for persistent storage
+volumes:
+  models_data:
+  logs_data:
+  data_storage:

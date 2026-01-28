@@ -1,0 +1,28 @@
+{
+  "data": {
+    "raw_path": "data/raw",
+    "processed_path": "data/processed",
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "preprocessing": {
+    "missing_value_strategy": "drop",
+    "remove_duplicates": true,
+    "scale_features": false
+  },
+  "model": {
+    "type": "random_forest",
+    "hyperparameter_tuning": false,
+    "cv_folds": 5
+  },
+  "output": {
+    "model_path": "models",
+    "model_name": "psl_model.pkl",
+    "reports_path": "reports",
+    "metrics_file": "metrics.json"
+  },
+  "thresholds": {
+    "min_accuracy": 0.7,
+    "min_f1_score": 0.6
+  }
+}
