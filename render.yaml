@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: psl-cricket-analytics
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -b 0.0.0.0:$PORT flask_app:app
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
